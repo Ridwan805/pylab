@@ -273,3 +273,231 @@ th {
         padding: 24px;
     }
 }
+
+/* ========== PYLAB HOMEPAGE ========== */
+
+.home-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 55px;
+    padding: 65px 0 90px;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #e8edff;
+    color: #3459d1;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.hero-copy h1 {
+    font-size: clamp(34px, 4.5vw, 57px);
+    line-height: 1.14;
+    letter-spacing: -1.8px;
+    margin: 23px 0;
+}
+
+.hero-copy h1 span {
+    color: #3459d1;
+}
+
+.hero-copy > p {
+    max-width: 520px;
+    color: #718096;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.hero-note {
+    margin-top: 22px;
+    color: #8b95a8;
+    font-size: 13px;
+}
+
+/* Code example */
+
+.code-window {
+    background: #17253d;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 25px 55px rgba(25, 42, 78, 0.18);
+}
+
+.code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    background: #202f4a;
+    color: #aab9d2;
+    font-size: 12px;
+}
+
+.code-dots {
+    color: #ff9f71;
+    letter-spacing: 4px;
+}
+
+.code-window pre {
+    margin: 0;
+    padding: 30px 24px;
+    color: #e1eaff;
+    font-size: 14px;
+    line-height: 2;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.code-output {
+    display: flex;
+    gap: 18px;
+    padding: 16px 24px;
+    background: #213958;
+    color: #a4b6d0;
+    font-size: 13px;
+}
+
+.code-output strong {
+    color: #7ce3b4;
+}
+
+/* General homepage sections */
+
+.home-section {
+    padding: 55px 0 85px;
+}
+
+.section-heading {
+    margin-bottom: 32px;
+}
+
+.section-heading h2,
+.centered-heading h2 {
+    font-size: clamp(27px, 3vw, 36px);
+    margin: 8px 0;
+}
+
+.home-course-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.home-course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(30, 48, 90, 0.08);
+}
+
+.home-course-card .course-footer a {
+    font-weight: 600;
+}
+
+/* How it works */
+
+.how-section {
+    border-top: 1px solid #e5e9f2;
+}
+
+.centered-heading {
+    max-width: 550px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.step-card {
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #e5e9f2;
+    border-radius: 16px;
+}
+
+.step-number {
+    color: #3459d1;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.step-card h3 {
+    margin-top: 18px;
+}
+
+.step-card p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* Call to action */
+
+.home-cta {
+    padding: 65px 25px;
+    text-align: center;
+    background: #3459d1;
+    border-radius: 24px;
+    color: white;
+}
+
+.home-cta h2 {
+    font-size: clamp(27px, 3vw, 36px);
+    margin: 0 0 12px;
+}
+
+.home-cta p {
+    color: #e2e9ff;
+    margin-bottom: 25px;
+}
+
+.btn-light {
+    background: white;
+    color: #3459d1;
+}
+
+.btn-light:hover {
+    background: #e9edff;
+}
+
+.home-footer {
+    padding: 65px 0 20px;
+    color: #718096;
+    font-size: 13px;
+}
+
+.home-footer strong {
+    font-size: 23px;
+    color: #18243b;
+}
+
+.home-footer p {
+    margin: 7px 0 20px;
+}
+
+@media (max-width: 800px) {
+    .home-hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding-top: 25px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-section {
+        padding: 45px 0 65px;
+    }
+}

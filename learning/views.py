@@ -13,11 +13,12 @@ from django.shortcuts import render
 from .models import Course, Lesson
 
 # Create your views here.
-def home(request): 
-    return HttpResponse(
-        "<h1>Welcome to PyLab!</h1>"
-        "<p>Learn NumPy, Pandas and python with us.</p>"
-    )
+def home(request):
+    courses = Course.objects.all().order_by("-created_at")[:3]
+
+    return render(request, "learning/home.html", {
+        "courses": courses
+    })
 
 @login_required
 def student_dashboard(request):

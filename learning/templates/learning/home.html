@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}PyLab | Learn Python by Doing{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="home-hero">
+    <div class="hero-copy">
+        <span class="hero-badge">
+            LEARN • PRACTICE • BUILD
+        </span>
+
+        <h1>
+            Learn Python by doing,
+            <span>not just watching.</span>
+        </h1>
+
+        <p>
+            Build your Python and data science skills
+            through structured lessons in Python,
+            NumPy and pandas.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#courses" class="btn btn-primary">
+                Explore Courses
+            </a>
+
+            <a href="#how-it-works" class="btn btn-outline">
+                How It Works
+            </a>
+        </div>
+
+        <div class="hero-note">
+            Beginner-friendly • Learn at your own pace
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="code-window">
+            <div class="code-header">
+                <span class="code-dots">● ● ●</span>
+                <span>numpy_intro.py</span>
+            </div>
+
+            <pre><code>import numpy as np
+
+numbers = np.array([10, 20, 30])
+
+average = numbers.mean()
+
+print(average)</code></pre>
+
+            <div class="code-output">
+                <span>Output</span>
+                <strong>20.0</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- COURSES -->
+<section class="home-section" id="courses">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">START LEARNING</span>
+            <h2>Explore our courses</h2>
+            <p class="muted">
+                Build practical skills, one lesson at a time.
+            </p>
+        </div>
+    </div>
+
+    <div class="course-grid">
+        {% for course in courses %}
+        <article class="course-card home-course-card">
+            <div class="course-icon">
+                PY
+            </div>
+
+            <h3>{{ course.title }}</h3>
+
+            <p class="muted">
+                {{ course.description|truncatewords:22 }}
+            </p>
+
+            <div class="course-footer">
+                <span>
+                    {{ course.lessons.count }} lessons
+                </span>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'student_dashboard' %}">
+                        View Dashboard →
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        Get Started →
+                    </a>
+                {% endif %}
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty-state">
+            Courses are being prepared. Check back soon.
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="home-section how-section" id="how-it-works">
+    <div class="centered-heading">
+        <span class="eyebrow">THE PYLAB APPROACH</span>
+        <h2>One step at a time.</h2>
+        <p class="muted">
+            A clear learning path from concepts
+            to real Python projects.
+        </p>
+    </div>
+
+    <div class="steps-grid">
+        <div class="step-card">
+            <span class="step-number">01</span>
+            <h3>Choose a course</h3>
+            <p>
+                Start with a subject that matches
+                your learning goals.
+            </p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">02</span>
+            <h3>Understand the concepts</h3>
+            <p>
+                Follow structured lessons with
+                clear Python examples.
+            </p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">03</span>
+            <h3>Build your skills</h3>
+            <p>
+                Apply what you learn as interactive
+                exercises are introduced.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="home-cta">
+    <h2>Ready to start learning?</h2>
+    <p>
+        Take your first step toward mastering Python
+        and data analysis.
+    </p>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'student_dashboard' %}"
+           class="btn btn-light">
+            Go to Dashboard
+        </a>
+    {% else %}
+        <a href="{% url 'login' %}"
+           class="btn btn-light">
+            Start Learning
+        </a>
+    {% endif %}
+</section>
+
+<footer class="home-footer">
+    <strong>PyLab.</strong>
+    <p>Learn Python. Build practical skills.</p>
+    <span>© {% now "Y" %} PyLab</span>
+</footer>
+
+{% endblock %}
