@@ -131,7 +131,7 @@ MAILERS = {
 
 
 LOGIN_URL = "/accounts/login/"
-
 LOGIN_REDIRECT_URL = "/student/dashboard/"
-
 LOGOUT_REDIRECT_URL = "/accounts/login/"
+
+STATIC_URL = "static/"

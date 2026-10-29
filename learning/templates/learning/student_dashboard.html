@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard | PyLab{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div class="eyebrow">STUDENT WORKSPACE</div>
+    <h1>Welcome back, {{ user.username }}!</h1>
+    <p class="muted">
+        Explore your available Python and data science courses.
+    </p>
+</section>
+
+<h2>Available Courses</h2>
+
+<div class="course-grid">
+    {% for course in courses %}
+        <article class="course-card">
+            <div class="course-icon">PY</div>
+
+            <h3>{{ course.title }}</h3>
+
+            <p class="muted">
+                {{ course.description|truncatewords:25 }}
+            </p>
+
+            <div class="course-footer">
+                <span>
+                    {{ course.lessons.count }} lessons
+                </span>
+                <span class="course-tag">Available</span>
+            </div>
+        </article>
+    {% empty %}
+        <div class="empty-state">
+            No courses have been published yet.
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

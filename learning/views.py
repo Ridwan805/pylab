@@ -8,6 +8,10 @@ from django.urls import reverse
 from django.utils.html import escape
 from django.middleware.csrf import get_token
 
+from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render
+from .models import Course, Lesson
+
 # Create your views here.
 def home(request): 
     return HttpResponse(
@@ -17,24 +21,21 @@ def home(request):
 
 @login_required
 def student_dashboard(request):
-    username = escape(request.user.username)
+    courses = Course.objects.all().order_by("id")
 
-    logout_url = reverse("logout")
-    csrf_token = get_token(request)
+    return render(request, "learning/student_dashboard.html", {
+        "courses": courses
+    })
 
-    html = f"""
-        <h1>Welcome to your dashboard, {username}!</h1>
 
-        <p>You are currently logged in.</p>
+@login_required
+@permission_required("learning.view_lesson", raise_exception=True)
+def manage_lessons(request):
+    lessons = Lesson.objects.select_related("course").order_by(
+        "course__title", "order"
+    )
 
-        <form action="{logout_url}" method="post">
-            <input type="hidden"
-                   name="csrfmiddlewaretoken"
-                   value="{csrf_token}">
-
-            <button type="submit">Logout</button>
-        </form>
-    """
-
-    return HttpResponse(html)
+    return render(request, "learning/manage_lessons.html", {
+        "lessons": lessons
+    })
 

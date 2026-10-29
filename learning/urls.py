@@ -10,6 +10,12 @@ urlpatterns = [
         name="student_dashboard"
     ),
     
+    path(
+        "manage/lessons/",
+        views.manage_lessons,
+        name="manage_lessons"
+    ),
+    
 ]
 
 

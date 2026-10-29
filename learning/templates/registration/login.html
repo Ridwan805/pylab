@@ -1,15 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>PyLab Login</title>
-</head>
-<body>
-    <h1>Login to PyLab</h1>
+{% extends "base.html" %}
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+{% block title %}Login | PyLab{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+    <div class="auth-card">
+        <div class="eyebrow">WELCOME BACK</div>
+
+        <h1>Log in to PyLab</h1>
+        <p class="muted">
+            Continue learning Python, NumPy and pandas.
+        </p>
+
+        {% if form.errors %}
+            <div class="alert">
+                Invalid username or password. Please try again.
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <input type="hidden"
+                   name="next"
+                   value="{{ next }}">
+
+            <label for="id_username">Username</label>
+            {{ form.username }}
+
+            <label for="id_password">Password</label>
+            {{ form.password }}
+
+            <button type="submit" class="btn btn-primary full">
+                Log In
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}
