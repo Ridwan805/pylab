@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ course.title }} | PyLab
+{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div class="eyebrow">PYLAB COURSE</div>
+
+    <h1>{{ course.title }}</h1>
+
+    <p class="muted">
+        {{ course.description }}
+    </p>
+
+    <p>
+        {{ lessons.count }} lessons available
+    </p>
+</section>
+
+<section class="lesson-list">
+
+    <h2>Course Lessons</h2>
+
+    {% for lesson in lessons %}
+
+        <a
+            href="{% url 'lesson_detail' course.id lesson.id %}"
+            class="lesson-item"
+        >
+            <div>
+                <span class="lesson-number">
+                    Lesson {{ forloop.counter }}
+                </span>
+
+                <h3>{{ lesson.title }}</h3>
+            </div>
+
+            <span class="lesson-arrow">→</span>
+        </a>
+
+    {% empty %}
+
+        <div class="empty-state">
+            No lessons have been added to this course yet.
+        </div>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render
 from .models import Course, Lesson
 
+from django.shortcuts import get_object_or_404
+
 # Create your views here.
 def home(request):
     courses = Course.objects.all().order_by("-created_at")[:3]
@@ -39,4 +41,38 @@ def manage_lessons(request):
     return render(request, "learning/manage_lessons.html", {
         "lessons": lessons
     })
+
+@login_required
+def course_detail(request, course_id):
+    course = get_object_or_404(
+        Course,
+        id=course_id # the course ID extracted from the URL.
+    )
+
+    lessons = course.lessons.all().order_by("order", "id")
+
+    return render(
+        request, # information about the HTTP request. 
+        "learning/course_detail.html",
+        {
+            "course": course,
+            "lessons": lessons
+        })
+
+@login_required
+def lesson_detail(request, course_id, lesson_id):
+    lesson = get_object_or_404(
+        Lesson.objects.select_related("course"),
+        id=lesson_id,
+        course_id=course_id
+    )
+
+    return render(
+        request,
+        "learning/lesson_detail.html",
+        {
+            "lesson": lesson,
+            "course": lesson.course
+        })
+
 

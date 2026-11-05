@@ -91,15 +91,9 @@ print(average)</code></pre>
                     {{ course.lessons.count }} lessons
                 </span>
 
-                {% if user.is_authenticated %}
-                    <a href="{% url 'student_dashboard' %}">
-                        View Dashboard →
-                    </a>
-                {% else %}
-                    <a href="{% url 'login' %}">
-                        Get Started →
-                    </a>
-                {% endif %}
+                <a href="{% url 'course_detail' course.id %}">
+                    View Course →
+                </a>
             </div>
         </article>
         {% empty %}

@@ -16,6 +16,17 @@ urlpatterns = [
         name="manage_lessons"
     ),
     
+    path(
+        "courses/<int:course_id>/",
+        views.course_detail,
+        name="course_detail"
+    ),
+
+    path(
+    "courses/<int:course_id>/lessons/<int:lesson_id>/",
+    views.lesson_detail,
+    name="lesson_detail"
+    ),
 ]
 
 

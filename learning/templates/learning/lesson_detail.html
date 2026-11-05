@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ lesson.title }} | PyLab
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'course_detail' course.id %}">
+    ← Back to {{ course.title }}
+</a>
+
+<section class="page-heading">
+    <div class="eyebrow">PYLAB LESSON</div>
+
+    <h1>{{ lesson.title }}</h1>
+
+    <p class="muted">{{ course.title }}</p>
+</section>
+
+<article class="lesson-content">
+    {{ lesson.content|linebreaks }}
+</article>
+
+{% endblock %}

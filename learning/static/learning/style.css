@@ -501,3 +501,66 @@ th {
         padding: 45px 0 65px;
     }
 }
+
+/* Course and Lesson Pages */
+
+.lesson-list {
+    margin-top: 35px;
+}
+
+.lesson-list h2 {
+    margin-bottom: 20px;
+}
+
+.lesson-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    padding: 22px;
+    margin-bottom: 14px;
+
+    color: var(--text);
+    transition: 0.2s ease;
+}
+
+.lesson-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.lesson-item h3 {
+    margin: 6px 0 0;
+}
+
+.lesson-number {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.lesson-arrow {
+    font-size: 22px;
+    color: var(--primary);
+}
+
+.lesson-content {
+    margin-top: 30px;
+    padding: 32px;
+
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+.lesson-content p {
+    margin-bottom: 18px;
+}
