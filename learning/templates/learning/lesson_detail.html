@@ -22,4 +22,29 @@
     {{ lesson.content|linebreaks }}
 </article>
 
+<section class="completion-section">
+
+    {% if is_completed %}
+
+        <div class="completion-success">
+            ✓ You have completed this lesson!
+        </div>
+
+    {% else %}
+
+        <form
+            method="post"
+            action="{% url 'complete_lesson' course.id lesson.id %}"
+        >
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-primary">
+                Mark as Completed
+            </button>
+        </form>
+
+    {% endif %}
+
+</section>
+
 {% endblock %}

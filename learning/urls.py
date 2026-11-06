@@ -27,6 +27,13 @@ urlpatterns = [
     views.lesson_detail,
     name="lesson_detail"
     ),
+
+    path(
+    "courses/<int:course_id>/lessons/<int:lesson_id>/complete/",
+    views.complete_lesson,
+    name="complete_lesson"
+    ),
+    
 ]
 
 

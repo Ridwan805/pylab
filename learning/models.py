@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Course(models.Model):
@@ -21,3 +22,32 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+
+from django.conf import settings
+
+
+class LessonProgress(models.Model):
+    student = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+
+    lesson = models.ForeignKey(
+        Lesson,
+        on_delete=models.CASCADE
+    )
+
+    completed_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["student", "lesson"],
+                name="unique_student_lesson_progress"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.student} - {self.lesson}"

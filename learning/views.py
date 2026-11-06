@@ -12,6 +12,10 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render
 from .models import Course, Lesson
 
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
+from .models import LessonProgress
+
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -60,6 +64,7 @@ def course_detail(request, course_id):
         })
 
 @login_required
+@login_required
 def lesson_detail(request, course_id, lesson_id):
     lesson = get_object_or_404(
         Lesson.objects.select_related("course"),
@@ -67,12 +72,38 @@ def lesson_detail(request, course_id, lesson_id):
         course_id=course_id
     )
 
+    is_completed = LessonProgress.objects.filter(
+        student=request.user,
+        lesson=lesson
+    ).exists()
+
     return render(
         request,
         "learning/lesson_detail.html",
         {
             "lesson": lesson,
-            "course": lesson.course
-        })
+            "course": lesson.course,
+            "is_completed": is_completed
+        }
+    )
 
 
+@login_required
+@require_POST
+def complete_lesson(request, course_id, lesson_id):
+    lesson = get_object_or_404(
+        Lesson,
+        id=lesson_id,
+        course_id=course_id
+    )
+
+    LessonProgress.objects.get_or_create(
+        student=request.user,
+        lesson=lesson
+    )
+
+    return redirect(
+        "lesson_detail",
+        course_id=course_id,
+        lesson_id=lesson_id
+    )

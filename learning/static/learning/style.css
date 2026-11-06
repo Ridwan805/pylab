@@ -564,3 +564,20 @@ th {
 .lesson-content p {
     margin-bottom: 18px;
 }
+/* Lesson Completion */
+
+.completion-section {
+    margin-top: 28px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.completion-success {
+    background: #e8f7ed;
+    color: #277845;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
