@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}
@@ -6,6 +7,7 @@
 
 {% block content %}
 
+<!-- COURSE HEADING -->
 <section class="page-heading">
     <div class="eyebrow">PYLAB COURSE</div>
 
@@ -16,10 +18,38 @@
     </p>
 
     <p>
-        {{ lessons.count }} lessons available
+        {{ total_lessons }} lessons available
     </p>
 </section>
 
+
+<!-- COURSE PROGRESS -->
+<section class="progress-card">
+
+    <div class="progress-heading">
+        <div>
+            <h2>Your Progress</h2>
+
+            <p>
+                {{ completed_count }} of
+                {{ total_lessons }} lessons completed
+            </p>
+        </div>
+
+        <strong>{{ progress_percentage }}%</strong>
+    </div>
+
+    <div class="progress-track">
+        <div
+            class="progress-fill"
+            style="width: {{ progress_percentage }}%;">
+        </div>
+    </div>
+
+</section>
+
+
+<!-- COURSE LESSONS -->
 <section class="lesson-list">
 
     <h2>Course Lessons</h2>
@@ -36,6 +66,17 @@
                 </span>
 
                 <h3>{{ lesson.title }}</h3>
+
+                <!-- NEW: LESSON COMPLETION STATUS -->
+                {% if lesson.is_completed %}
+                    <span class="lesson-completed">
+                        ✓ Completed
+                    </span>
+                {% else %}
+                    <span class="lesson-pending">
+                        Not completed
+                    </span>
+                {% endif %}
             </div>
 
             <span class="lesson-arrow">→</span>
